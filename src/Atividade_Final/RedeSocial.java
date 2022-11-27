@@ -13,9 +13,9 @@ public class RedeSocial {
 	static Calendar data = Calendar.getInstance();
 	
 	public static void main(String[] args) {
-		usuariosRede.add(new Usuario("Bruno (teste 1)", "teste1", "teste1"));
-		usuariosRede.add(new Usuario("Alan (teste 2)", "teste2", "teste2"));
-		usuariosRede.add(new Usuario("Francisco (teste 2)", "teste3", "teste3"));
+		usuariosRede.add(new Usuario("Bruno", "teste1", "teste1"));
+		usuariosRede.add(new Usuario("Alan", "teste2", "teste2"));
+		usuariosRede.add(new Usuario("Francisco", "teste3", "teste3"));
 		
 		fazerPostagem(0, dataAtual(), horaAtual(), "O Códing Tank foi bem divertido pessoal, espero encontra-los em futuros modulos.", todasPostagens);
 		fazerPostagem(1, dataAtual(), horaAtual(), "Enfim o primeiro modulo dos futuros programadores java backend da Sinqia acabou, espero que todos tenham gostado do modulo e torço para dar aula novamente para vocês! PS: Continuem com essas conversas diárias, são bem legais e produtivas hahahah", todasPostagens);
@@ -45,11 +45,12 @@ public class RedeSocial {
 		System.out.println("\t*  Opção 2 - Cadastrar Usuario                                                                          *");
 		System.out.println("\t*  Opção 3 - Fechar                                                                                     *");
 		System.out.print("\t***  Digite sua Opção: ");
-		opcoes = scan.nextLine();
+		
+		opcoes = scan.next();
 		
 		while(!opcoes.matches("[1-3]")) {
 			System.out.print("\t***  Digite novamente sua Opção: ");
-			opcoes = scan.nextLine();
+			opcoes = scan.next();
 		}
 		
 		switch(Integer.parseInt(opcoes)){
@@ -60,6 +61,7 @@ public class RedeSocial {
 				telaCadastro();
 				break;
 			case 3:
+				System.out.println("\t*  Fechando a rede social! Até mais!                                                                    *");
 				System.exit(0);
 				break;
 		}
@@ -76,6 +78,9 @@ public class RedeSocial {
 		System.out.println("\t*********************************************************************************************************");
 		System.out.println("\t********\t\t\t\t     Cadastro de Usuário     \t\t\t\t ********");
 		System.out.println("\t*********************************************************************************************************");
+		
+		scan.nextLine(); //Limpa Buffer
+		
 		System.out.print("\t***  Digite seu Nome: ");
 		nome = scan.nextLine();
 		System.out.print("\t***  Digite seu Login: ");
@@ -135,6 +140,8 @@ public class RedeSocial {
 		System.out.println("\t*********************************************************************************************************");
 		System.out.println("\t********\t\t\t\t     Efetue seu Login     \t\t\t\t ********");
 		System.out.println("\t*********************************************************************************************************");
+		scan.nextLine(); //Limpa Buffer
+		
 		System.out.print("\t***  Digite seu Login: ");
 		login = scan.nextLine();
 		System.out.print("\t***  Digite sua Senha: ");
@@ -219,7 +226,6 @@ public class RedeSocial {
 				System.out.println("\t***\n\t***  Você será redirecionado em 3 segundos");
 				try {
 					Thread.sleep(3000);
-					scan.nextLine(); //Limpar buffer
 					telaInicial();
 				} catch (InterruptedException e) {
 					System.out.println(e.getMessage());
@@ -329,7 +335,6 @@ public class RedeSocial {
 				System.out.println("\t***\n\t***  Você será redirecionado em 3 segundos");
 				try {
 					Thread.sleep(3000);
-					scan.nextLine(); //Limpar buffer
 					telaInicial();
 				} catch (InterruptedException e) {
 					System.out.println(e.getMessage());
@@ -442,7 +447,6 @@ public class RedeSocial {
 				System.out.println("\t***\n\t***  Você será redirecionado em 3 segundos");
 				try {
 					Thread.sleep(3000);
-					scan.nextLine();
 					telaInicial();
 				} catch (InterruptedException e) {
 					System.out.println(e.getMessage());
@@ -454,6 +458,7 @@ public class RedeSocial {
 	
 	static void telaPostagem(int idUsuario) {
 		String msgPost;
+		
 		limpaConsole();
 		System.out.println("\t*********************************************************************************************************");
 		System.out.print("\t********\t       Bem-Vindo(a) " + usuariosRede.get(idUsuario).nome);
@@ -465,6 +470,7 @@ public class RedeSocial {
 		System.out.println("\t*********************************************************************************************************");
 		System.out.println("\t*  Escreva seu post (máximo de 270 caracteres) OBS: Digite \"SAIR\" para voltar ao menu inicial         *");
 		System.out.print("\t*** ");
+		
 		scan.nextLine(); //Limpar buffer
 		msgPost = scan.nextLine();
 		
@@ -513,8 +519,8 @@ public class RedeSocial {
 		System.out.println("\t*********************************************************************************************************");
 		System.out.println("\t********\t\t\t\t    Visualizando Post        \t\t\t\t ********");
 		System.out.println("\t*********************************************************************************************************");
-		
 		System.out.println("\t*\t\t\t\t\t\t\t\t\t\t     " + todasPostagens.get(idPostagem).data + " - " + todasPostagens.get(idPostagem).hora );
+		
 		if(todasPostagens.get(idPostagem).idUsuario == idUsuario) {
 			System.out.println("\t* ("+(idPostagem+1)+") Você postou:\n\t*");
 		}
@@ -524,7 +530,6 @@ public class RedeSocial {
 		
 		imprimeConteudoPost(todasPostagens.get(idPostagem).conteudo);
 		System.out.println("\t*\t\t\t\t\t\t\t\t\t\t\t" + todasPostagens.get(idPostagem).comentarios.size() + " comentários");
-		
 		System.out.println("\t*********************************************************************************************************");
 		System.out.println("\t********\t\t\t\t       Comentários        \t\t\t\t ********");
 		System.out.println("\t*********************************************************************************************************");
@@ -591,7 +596,6 @@ public class RedeSocial {
 				System.out.println("\t***\n\t***  Você será redirecionado em 3 segundos");
 				try {
 					Thread.sleep(3000);
-					scan.nextLine(); //Limpar buffer
 					telaInicial();
 				} catch (InterruptedException e) {
 					System.out.println(e.getMessage());
@@ -615,6 +619,7 @@ public class RedeSocial {
 		System.out.println("\t*********************************************************************************************************");
 		System.out.println("\t*  Escreva seu comentário (máximo de 270 caracteres) OBS: Digite \"SAIR\" para voltar ao menu inicial     *");
 		System.out.print("\t*** ");
+		
 		scan.nextLine(); //Limpar buffer
 		msgComentario = scan.nextLine();
 		
@@ -668,6 +673,7 @@ public class RedeSocial {
 		System.out.println("\t*********************************************************************************************************");
 		System.out.println("\t*  Escreva o nome da pessoa que deseja buscar!     OBS: Digite \"SAIR\" para voltar ao menu inicial       *");
 		System.out.print("\t*** ");
+		
 		scan.nextLine(); //Limpar buffer
 		nomeBusca = scan.nextLine();
 		
@@ -750,6 +756,7 @@ public class RedeSocial {
 		System.out.println("\t*  Opção 8 - Procurar Pessoas                                                                           *");
 		System.out.println("\t*  Opção 9 - Sair                                                                                       *");
 		System.out.print("\t***  Digite sua Opção: ");
+		
 		opcoes = scan.next();
 		
 		while(!opcoes.matches("[1-9]")) {
@@ -877,7 +884,6 @@ public class RedeSocial {
 				System.out.println("\t***\n\t***  Você será redirecionado em 3 segundos");
 				try {
 					Thread.sleep(3000);
-					scan.nextLine(); //Limpar buffer
 					telaInicial();
 				} catch (InterruptedException e) {
 					System.out.println(e.getMessage());
@@ -898,7 +904,6 @@ public class RedeSocial {
 		System.out.println("\t*********************************************************************************************************");
 		System.out.println("\t********\t\t\t\t      Meus Seguidores    \t\t\t\t ********");
 		System.out.println("\t*********************************************************************************************************");
-		
 		
 		if(usuariosRede.get(idUsuario).seguidores.size() == 0) {
 			System.out.println("\t*  Você não tem seguidores!");
@@ -923,6 +928,7 @@ public class RedeSocial {
 		System.out.println("\t*  Opção 8 - Procurar Pessoas                                                                           *");
 		System.out.println("\t*  Opção 9 - Sair                                                                                       *");
 		System.out.print("\t***  Digite sua Opção: ");
+		
 		opcoes = scan.next();
 		
 		while(!opcoes.matches("[1-9]")) {
@@ -935,6 +941,7 @@ public class RedeSocial {
 				System.out.println("\t*  Informe o Código que está entre parenteses () do Usuário que deseja seguir!                          *");
 				System.out.println("\t*                                                                            OBS: Digite 0 para voltar! *");
 				System.out.print("\t***  Digite o Código: ");
+				
 				idUsuarioEscolhido = scan.next();
 				
 				while(true) {
@@ -984,7 +991,9 @@ public class RedeSocial {
 				System.out.println("\t*  Informe o Código que está entre parenteses () do Usuário que deseja parar de Seguir!                 *");
 				System.out.println("\t*                                                                            OBS: Digite 0 para voltar! *");
 				System.out.print("\t***  Digite o Código: ");
+				
 				idUsuarioEscolhido = scan.next();
+				
 				while(true) {
 					if(idUsuarioEscolhido.matches("\\d+")) {
 						if(Integer.parseInt(idUsuarioEscolhido) == 0) {
@@ -1041,7 +1050,6 @@ public class RedeSocial {
 				System.out.println("\t***\n\t***  Você será redirecionado em 3 segundos");
 				try {
 					Thread.sleep(3000);
-					scan.nextLine(); //Limpar buffer
 					telaInicial();
 				} catch (InterruptedException e) {
 					System.out.println(e.getMessage());
@@ -1063,7 +1071,6 @@ public class RedeSocial {
 		System.out.println("\t*********************************************************************************************************");
 		System.out.println("\t********\t\t\t\t      Quem Estou Seguindo    \t\t\t\t ********");
 		System.out.println("\t*********************************************************************************************************");
-		
 		
 		if(usuariosRede.get(idUsuario).seguindo.size() == 0) {
 			System.out.println("\t*  Você não segue ninguém!");
@@ -1087,6 +1094,7 @@ public class RedeSocial {
 		System.out.println("\t*  Opção 7 - Procurar Pessoas                                                                           *");
 		System.out.println("\t*  Opção 8 - Sair                                                                                       *");
 		System.out.print("\t***  Digite sua Opção: ");
+		
 		opcoes = scan.next();
 		
 		while(!opcoes.matches("[1-8]")) {
@@ -1100,6 +1108,7 @@ public class RedeSocial {
 				System.out.println("\t*                                                                            OBS: Digite 0 para voltar! *");
 				System.out.print("\t***  Digite o Código: ");
 				idUsuarioEscolhido = scan.next();
+				
 				while(true) {
 					if(idUsuarioEscolhido.matches("\\d+")) {
 						if(Integer.parseInt(idUsuarioEscolhido) == 0) {
@@ -1156,7 +1165,6 @@ public class RedeSocial {
 				System.out.println("\t***\n\t***  Você será redirecionado em 3 segundos");
 				try {
 					Thread.sleep(3000);
-					scan.nextLine(); //Limpar buffer
 					telaInicial();
 				} catch (InterruptedException e) {
 					System.out.println(e.getMessage());
@@ -1243,5 +1251,4 @@ public class RedeSocial {
 			
 		}
 	}
-
 }
